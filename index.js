@@ -1,5 +1,6 @@
 const { Builder, By, until, Key } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
+var http = require("http");
 
 // Create a new WebDriver instance
 // const driver = new Builder().forBrowser("chrome").build();
@@ -91,3 +92,11 @@ async function openWebsite(driver) {
 }
 
 openWebsiteInMultipleTabs();
+
+http
+  .createServer(function (req, res) {
+    console.log(`Just got a request at ${req.url}!`);
+    res.write("Yo!");
+    res.end();
+  })
+  .listen(process.env.PORT || 3000);
